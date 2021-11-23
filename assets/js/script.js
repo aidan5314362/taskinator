@@ -38,6 +38,9 @@ var createTaskEl = function(taskDataObj) {
   taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
   listItemEl.appendChild(taskInfoEl);
 
+  var taskActionsEl = createTaskActions(taskIdCounter);
+  listItemEl.appendChild(taskActionsEl);
+  
   tasksToDoEl.appendChild(listItemEl);
 
   // increase task counter for next unique id
@@ -53,7 +56,6 @@ var createTaskActions = function(taskId) {
   editButtonEl.textContent = "Edit";
   editButtonEl.className = "btn edit-btn";
   editButtonEl.setAttribute("data-task-id", taskId);
-
   actionContainerEl.appendChild(editButtonEl);
 
   // create delete button
@@ -61,11 +63,13 @@ var createTaskActions = function(taskId) {
   deleteButtonEl.textContent = "Delete";
   deleteButtonEl.className = "btn delete-btn";
   deleteButtonEl.setAttribute("data-task-id", taskId);
+  actionContainerEl.appendChild(deleteButtonEl);
 
   var statusSelectEl = document.createElement("select");
   statusSelectEl.className = "select-status";
   statusSelectEl.setAttribute("name", "status-change");
   statusSelectEl.setAttribute("data-task-id", taskId);
+  actionContainerEl.appendChild(statusSelectEl);
 
   var statusChoices = ["To Do", "In Progress", "Completed"];
 
